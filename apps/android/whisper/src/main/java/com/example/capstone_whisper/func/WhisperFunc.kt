@@ -138,8 +138,7 @@ class WhisperFunc {
         }
 
         val nFft = 1 + fftSize / 2
-
-        /////////////// UNCOMMENT below block to use multithreaded mel calculation /////////////////////////
+        
         // Calculate mel values using multiple threads
         val workers: MutableList<Thread> = ArrayList()
         for (iw in 0 until nThreads) {
@@ -152,15 +151,6 @@ class WhisperFunc {
 
                 var i = ith
                 while (i < mel.nLen) {
-                    /////////////// END of Block ///////////////////////////////////////////////////////////////////////
-
-/////////////// COMMENT below block to use multithreaded mel calculation ///////////////////////////
-//        float[] fftIn = new float[fftSize];
-//        Arrays.fill(fftIn, 0.0f);
-//        float[] fftOut = new float[fftSize * 2];
-//
-//        for (int i = 0; i < mel.nLen; i++) {
-/////////////// END of Block ///////////////////////////////////////////////////////////////////////
                     val offset = i * fftStep
 
                     // apply Hanning window
